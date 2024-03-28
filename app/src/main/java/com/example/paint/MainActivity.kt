@@ -68,13 +68,12 @@ fun DrawCanvas(pathData: MutableState<PathData>, pathList: SnapshotStateList<Pat
         .pointerInput(true) {
             detectDragGestures(
                 onDragStart = {
-                    tempPath = Path()
-                }, onDragEnd = {
                     pathList.add(
                         pathData.value.copy(
                             path = tempPath
                         )
                     )
+                    tempPath = Path()
                 }) { change, dragAmount ->
                 tempPath.moveTo(
                     change.position.x - dragAmount.x, change.position.y - dragAmount.y
